@@ -28,7 +28,7 @@ import org.gradle.api.tasks.Sync
 
 class ApplicationPluginTest extends Specification {
     private final Project project = HelperUtil.createRootProject();
-    private final ApplicationPlugin plugin = new ApplicationPlugin();
+    private final ApplicationExtendedPlugin plugin = new ApplicationExtendedPlugin();
 
     public void appliesJavaPluginAndAddsConventionObjectWithDefaultValues() {
         when:
@@ -36,7 +36,7 @@ class ApplicationPluginTest extends Specification {
 
         then:
         project.plugins.hasPlugin(JavaPlugin.class)
-        project.convention.getPlugin(ApplicationPluginConvention.class) != null
+        project.convention.getPlugin(ApplicationExtendedPluginConvention.class) != null
         project.applicationName == project.name
         project.mainClassName == null
     }
