@@ -3,7 +3,7 @@ import org.gradle.api.internal.artifacts.dependencies.DefaultSelfResolvingDepend
 apply plugin: 'groovy'
 apply plugin: 'maven'
 
-version = '1.0.2-M3-SNAPSHOT'
+version = '1.0.2-M3'
 group = 'org.gradle.api.plugins'
 /*
  * Copyright 2010 the original author or authors.
