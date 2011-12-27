@@ -118,4 +118,26 @@ class ApplicationPluginTest extends Specification {
         def startScripts = project.tasks[ApplicationPlugin.TASK_START_SCRIPTS_NAME]
         startScripts.mainClassName == "Acme"
     }
+
+    public void settingRootZipEntry(){
+      when:
+        plugin.apply(project);
+        project.convention.plugins.application.zipRootEntry = 'perl-server'
+
+      then:
+        def distZipTask = project.distZip
+        distZipTask.mainSpec.mainSpec.childSpecs.first().destDir.call() == 'perl-server'
+
+    }
+
+    public void noRootZipEntry(){
+      when:
+        plugin.apply(project);
+        project.convention.plugins.application.noRoot = true
+
+      then:
+        def distZipTask = project.distZip
+        distZipTask.mainSpec.mainSpec.childSpecs.first().destDir() == ''
+
+    }
 }

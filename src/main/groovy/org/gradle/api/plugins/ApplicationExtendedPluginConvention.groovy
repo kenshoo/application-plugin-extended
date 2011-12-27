@@ -31,5 +31,13 @@ class ApplicationExtendedPluginConvention {
      */
     String mainClassName
 
+    /**
+     * Specifying a root entry for the zip
+     */
     String zipRootEntry
+
+    /**
+     * Placing bin and lib without any root entry above them
+     */
+    boolean noRoot
 }

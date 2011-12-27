@@ -102,9 +102,12 @@ class ApplicationExtendedPlugin implements Plugin<Project> {
         distZipTask.description = "Bundles the project as a JVM application with libs and OS specific scripts."
         distZipTask.group = APPLICATION_GROUP
         distZipTask.conventionMapping.baseName = { pluginConvention.applicationName }
-        def baseDir = {pluginConvention.zipRootEntry?: distZipTask.archiveName - '.zip'}
+
+        def base = {pluginConvention.zipRootEntry?: distZipTask.archiveName - '.zip'}
+        def baseDir = {pluginConvention.noRoot ? '':base()}
+
         distZipTask.into(baseDir) {
-            with(createDistSpec())
+          with(createDistSpec())
         }
     }
 
