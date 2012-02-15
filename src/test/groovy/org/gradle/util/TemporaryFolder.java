@@ -89,19 +89,12 @@ public class TemporaryFolder implements MethodRule, TestFileContext {
         return temporaryFolder;
     }
 
-    public TestFile getTestDir() {
-        return getDir();
-    }
+   public TestFile file(Object... path){
+      return null;
+   }
 
-    public TestFile file(Object... path) {
-        return getDir().file((Object[]) path);
-    }
+   public TestFile getTestDir(){
+     return null;
+   }
 
-    public TestFile createFile(Object... path) {
-        return file((Object[]) path).createFile();
-    }
-
-    public TestFile createDir(Object... path) {
-        return file((Object[]) path).createDir();
-    }
 }

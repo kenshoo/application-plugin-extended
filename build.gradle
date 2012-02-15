@@ -30,7 +30,7 @@ apply from: 'buildScripts/libraries.gradle'
 
 dependencies {
     groovy libraries.groovy_depends
-    compile libraries.jmock, libraries.spock
+    testCompile libraries.jmock, libraries.spock
     compile gradleApi()
     testCompile 'org.jruby.ext.posix:jnr-posix:1.1.4'
     testCompile libraries.xmlunit, 'net.sourceforge.nekohtml:nekohtml:1.9.14'

@@ -217,15 +217,6 @@ public class TestFile extends File implements TestFileContext {
         }
     }
 
-    public TestFile linkTo(File target) {
-        getParentFile().createDir();
-        int retval = PosixUtil.current().symlink(target.getAbsolutePath(), getAbsolutePath());
-        if (retval != 0) {
-            throw new UncheckedIOException(String.format("Could not create link from '%s' to '%s'", target, this));
-        }
-        return this;
-    }
-
     public TestFile touch() {
         try {
             FileUtils.touch(this);
@@ -300,18 +291,11 @@ public class TestFile extends File implements TestFileContext {
         assertIsFile();
         other.assertIsFile();
         assertEquals(other.length(), this.length());
-        assertTrue(Arrays.equals(HashUtil.createHash(this), HashUtil.createHash(other)));
+        assertTrue(Arrays.equals(HashUtilM3.createHash(this), HashUtilM3.createHash(other)));
         return this;
     }
 
-    public TestFile assertPermissions(Matcher<String> matcher) {
-        if (OperatingSystem.current().isUnix()) {
-            assertThat(String.format("mismatched permissions for '%s'", this), getPermissions(), matcher);
-        }
-        return this;
-    }
-
-    private String getPermissions() {
+   private String getPermissions() {
         assertExists();
         return new TestFileHelper(this).getPermissions();
     }
@@ -461,7 +445,7 @@ public class TestFile extends File implements TestFileContext {
 
         public Snapshot() {
             modTime = lastModified();
-            hash = HashUtil.createHash(TestFile.this);
+            hash = HashUtilM3.createHash(TestFile.this);
         }
     }
 }
