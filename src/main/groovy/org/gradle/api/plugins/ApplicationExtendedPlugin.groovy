@@ -59,7 +59,7 @@ class ApplicationExtendedPlugin implements Plugin<Project> {
     }
 
     private void addRunTask() {
-        def run = project.tasks.add(TASK_RUN_NAME, JavaExec)
+        def run = project.tasks.create(TASK_RUN_NAME, JavaExec)
         run.description = "Runs this project as a JVM application"
         run.group = APPLICATION_GROUP
         run.classpath = project.sourceSets.main.runtimeClasspath
@@ -68,7 +68,7 @@ class ApplicationExtendedPlugin implements Plugin<Project> {
 
     // @Todo: refactor this task configuration to extend a copy task and use replace tokens
     private void addCreateScriptsTask() {
-        def startScripts = project.tasks.add(TASK_START_SCRIPTS_NAME, CreateStartScripts)
+        def startScripts = project.tasks.create(TASK_START_SCRIPTS_NAME, CreateStartScripts)
         startScripts.description = "Creates OS specific scripts to run the project as a JVM application."
         startScripts.classpath = project.tasks[JavaPlugin.JAR_TASK_NAME].outputs.files + project.configurations.runtime
         startScripts.conventionMapping.mainClassName = { pluginConvention.mainClassName }
@@ -77,7 +77,7 @@ class ApplicationExtendedPlugin implements Plugin<Project> {
     }
 
     private void addInstallTask() {
-        def installTask = project.tasks.add(TASK_INSTALL_NAME, Sync)
+        def installTask = project.tasks.create(TASK_INSTALL_NAME, Sync)
         installTask.description = "Installs the project as a JVM application along with libs and OS specific scripts."
         installTask.group = APPLICATION_GROUP
         installTask.with(createDistSpec())
@@ -98,7 +98,7 @@ class ApplicationExtendedPlugin implements Plugin<Project> {
     }
 
     private void addDistZipTask() {
-        def distZipTask = project.tasks.add(TASK_DIST_ZIP_NAME, Zip)
+        def distZipTask = project.tasks.create(TASK_DIST_ZIP_NAME, Zip)
         distZipTask.description = "Bundles the project as a JVM application with libs and OS specific scripts."
         distZipTask.group = APPLICATION_GROUP
         distZipTask.conventionMapping.baseName = { pluginConvention.applicationName }

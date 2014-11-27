@@ -126,7 +126,7 @@ class ApplicationPluginTest extends Specification {
 
       then:
         def distZipTask = project.distZip
-        distZipTask.mainSpec.mainSpec.childSpecs.first().destDir.call() == 'perl-server'
+        distZipTask.getMainSpec().childSpecs.first().destDir.call() == 'perl-server'
 
     }
 
@@ -137,7 +137,7 @@ class ApplicationPluginTest extends Specification {
 
       then:
         def distZipTask = project.distZip
-        distZipTask.mainSpec.mainSpec.childSpecs.first().destDir() == ''
+        distZipTask.getMainSpec().childSpecs.first().destDir() == ''
 
     }
 }

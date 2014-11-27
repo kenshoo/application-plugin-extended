@@ -10,7 +10,7 @@ libraries = [
         commons_lang: 'commons-lang:commons-lang:2.6@jar',
         dom4j: 'dom4j:dom4j:1.6.1@jar',
         guava: 'com.google.guava:guava:r08@jar',
-        groovy: 'org.codehaus.groovy:groovy-all:1.7.10@jar',
+        groovy: 'org.codehaus.groovy:groovy-all:1.8.6@jar',
         slf4j_api: 'org.slf4j:slf4j-api:1.6.1@jar',
         jcl_to_slf4j: 'org.slf4j:jcl-over-slf4j:1.6.1@jar',
         jul_to_slf4j: 'org.slf4j:jul-to-slf4j:1.6.1@jar',
